@@ -381,6 +381,15 @@ class DamfalfileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 
 				foreach ($ttContentEntriesBodytext as $bodytextValue) {
 
+
+					$falLinkBodytext = $bodytextValue['bodytext'];
+                    			
+					preg_match_all("/<media ([0-9]{1,})/",$falLinkBodytext,$matches);
+                    			foreach ($matches[1] as $match) {
+                        			$rowDamInfo = $this->damfalfileRepository->selectOneRowQuery('falUid', 'tx_dam', "uid = '" . $match . "'");
+                        			$falLinkBodytext = str_replace('<media '.$match, '<media '.$rowDamInfo['falUid'], $falLinkBodytext);
+                    			}
+
 					$falLinkBodytext = $bodytextValue['bodytext'];
 
 					$falLinkBodytext = str_replace('<media ', '<link file:', $falLinkBodytext);
