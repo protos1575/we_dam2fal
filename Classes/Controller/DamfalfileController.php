@@ -390,7 +390,6 @@ class DamfalfileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
                         			$falLinkBodytext = str_replace('<media '.$match, '<media '.$rowDamInfo['falUid'], $falLinkBodytext);
                     			}
 
-					$falLinkBodytext = $bodytextValue['bodytext'];
 
 					$falLinkBodytext = str_replace('<media ', '<link file:', $falLinkBodytext);
 					$falLinkBodytext = str_replace('</media>', '</link>', $falLinkBodytext);
